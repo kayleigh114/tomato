@@ -1,0 +1,33 @@
+<script>
+breakTime = false;
+
+function startAll() {
+  if (breakTime == false) {
+    breakTime = true;
+    return startWorkOne();
+  };
+};
+
+function startWorkOne() {
+  totalTime = 59;
+  countdownSeconds = setInterval(showTime, 1000);
+  setTimeout(stopTime, 60000);
+};
+
+function showTime() {
+  seconds = totalTime % 60;
+  seconds > 9 ? seconds = seconds : seconds = "0" + seconds;
+  minutes = Math.floor(totalTime / 60);
+  minutes > 9 ? minutes = minutes : minutes = "0" + minutes;
+  document.getElementById("practiceTimer").innerHTML = minutes + ":" + seconds;
+  totalTime = totalTime - 1;
+};
+
+function stopTime() {
+  clearInterval(countdownSeconds);
+  breakTime = false;
+};
+</script>
+<h1>Tomato</h1>
+<button type="button" onclick="startAll()">WORK</button>
+<p id="practiceTimer">01:00</p>
